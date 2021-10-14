@@ -20,11 +20,12 @@ export const Note = ({route}) => {
   const updateNote = (title, content, image) => {
     let noteIndex = myContext.notes.findIndex(e => e.id === note.id);
     let oldTitle = myContext.notes[noteIndex].title;
+    let oldContent = myContext.notes[noteIndex].content;
     myContext.notes[noteIndex].title = title;
     myContext.notes[noteIndex].content = content;
     myContext.notes[noteIndex].image = image;
     myContext.setNotes(myContext.notes);
-    if (oldTitle !== title) {
+    if (oldTitle !== title || oldContent !== content) {
       myContext.updateList();
     }
   };
@@ -76,7 +77,6 @@ export const Note = ({route}) => {
               width: '100%',
               aspectRatio: 3 / 2,
             }}
-            // blurRadius={80}
             source={{uri: image}}>
             <View
               style={{
